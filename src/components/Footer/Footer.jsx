@@ -1,10 +1,8 @@
-import React from "react";
-
 const Footer = () => {
   return (
-    <div>
-      <h2>this is footer</h2>
-    </div>
+    <footer className="bg-dark-brown text-off-white p-8 text-center">
+      <p>&copy; 2024 The Book Haven. All rights reserved.</p>
+    </footer>
   );
 };
 

@@ -11,7 +11,6 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
