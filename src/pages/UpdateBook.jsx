@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UpdateDetails = () => {
+const UpdateBook = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const UpdateDetails = () => {
     );
 };
 
-export default UpdateDetails;
+export default UpdateBook;

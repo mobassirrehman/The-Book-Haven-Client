@@ -1,74 +1,58 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../layouts/Root";
+import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
 import AllBooks from "../pages/AllBooks";
 import AddBook from "../pages/AddBook";
 import MyBooks from "../pages/MyBooks";
 import BookDetails from "../pages/BookDetails";
 import UpdateBook from "../pages/UpdateBook";
-import ErrorPage from "../pages/ErrorPage";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
-import PrivateRoute from "../privateRoute/PrivateRoute";
+
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
+    element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Home></Home>,
       },
       {
         path: "/all-books",
-        element: <AllBooks />,
+        element: <AllBooks></AllBooks>,
       },
       {
         path: "/add-book",
-        element: (
-          <PrivateRoute>
-            <AddBook />
-          </PrivateRoute>
-        ),
+        element: <AddBook></AddBook>,
       },
       {
         path: "/my-books",
-        element: (
-          <PrivateRoute>
-            <MyBooks />
-          </PrivateRoute>
-        ),
+        element: <MyBooks></MyBooks>,
       },
       {
         path: "/book/:id",
-        element: (
-          <PrivateRoute>
-            <BookDetails />
-          </PrivateRoute>
-        ),
+        element: <BookDetails></BookDetails>,
       },
       {
         path: "/update-book/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateBook />
-          </PrivateRoute>
-        ),
+        element: <UpdateBook></UpdateBook>,
       },
       {
         path: "/login",
-        element: <Login />,
+        element: <Login></Login>,
       },
       {
         path: "/register",
-        element: <Register />,
+        element: <Register></Register>,
       },
       {
         path: "*",
-        element: <NotFound />,
+        element: <NotFound></NotFound>,
       },
     ],
   },

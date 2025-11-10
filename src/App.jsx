@@ -1,12 +1,13 @@
-import './App.css'
+import "./App.css";
 
 function App() {
-
   return (
-    <>
-      <h1>Book-Haven</h1>
-    </>
-  )
+    <div className="min-h-screen bg-cream flex items-center justify-center">
+      <h1 className="text-5xl font-bold text-vintage-brown">
+        The Book Haven Works!
+      </h1>
+    </div>
+  );
 }
 
-export default App
+export default App;
