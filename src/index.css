@@ -51,7 +51,7 @@
 html {
   scroll-behavior: smooth;
 }
-
+/* home */
 .banner {
   @apply relative overflow-hidden h-[60vh] md:h-[70vh];
   background-color: #1a1410;
@@ -145,4 +145,84 @@ html {
 
 .container-custom {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+/* login & register */
+.auth-page {
+  @apply min-h-screen bg-gradient-to-br from-[#EAE3D8] via-[#F5F0E8] to-[#EAE3D8] py-16 px-4;
+}
+
+.auth-container {
+  @apply max-w-md mx-auto;
+}
+
+.auth-card {
+  @apply bg-white rounded-2xl shadow-2xl p-8 border border-[#6B5D52]/20;
+}
+
+.auth-title {
+  @apply text-3xl md:text-4xl font-bold text-center text-[#3D3229] mb-2;
+}
+
+.auth-subtitle {
+  @apply text-center text-[#6B6B6B] mb-8;
+}
+
+.auth-form {
+  @apply space-y-5;
+}
+
+.form-group {
+  @apply space-y-2;
+}
+
+.form-label {
+  @apply block text-sm font-semibold text-[#3D3229];
+}
+
+.form-input {
+  @apply w-full px-4 py-3 bg-[#F5F0E8] border-2 border-[#6B5D52]/30 rounded-lg text-[#3D3229] placeholder:text-[#6B6B6B]/50 focus:outline-none focus:border-[#2C7873] focus:bg-white transition-all duration-300;
+}
+
+.password-wrapper {
+  @apply relative;
+}
+
+.password-toggle {
+  @apply absolute right-4 top-1/2 -translate-y-1/2 text-[#6B6B6B] cursor-pointer hover:text-[#3D3229] transition-colors;
+}
+
+.btn-auth {
+  @apply w-full bg-[#2C7873] hover:bg-[#1F5B57] text-white font-bold py-3 rounded-lg transition-all duration-300 hover:shadow-lg;
+}
+
+.btn-google {
+  @apply w-full bg-white hover:bg-gray-50 text-[#3D3229] font-semibold py-3 rounded-lg border-2 border-[#6B5D52]/30 transition-all duration-300 hover:border-[#2C7873] flex items-center justify-center gap-2;
+}
+
+.divider {
+  @apply flex items-center gap-4 my-6;
+}
+
+.divider-line {
+  @apply flex-1 h-px bg-[#6B5D52]/20;
+}
+
+.divider-text {
+  @apply text-sm text-[#6B6B6B];
+}
+
+.auth-link {
+  @apply text-center text-sm text-[#6B6B6B] mt-6;
+}
+
+.auth-link a {
+  @apply text-[#2C7873] hover:text-[#1F5B57] font-semibold underline;
+}
+
+.forget-password {
+  @apply text-sm text-[#6B6B6B] hover:text-[#2C7873] transition-colors cursor-default;
+}
+
+.error-message {
+  @apply text-red-600 text-xs mt-1;
 }
