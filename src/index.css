@@ -1,20 +1,17 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@import url("https://fonts.googleapis.com/css2?family=Marcellus&display=swap");
 
 @layer base {
   body {
-    @apply bg-[#f0d59b] text-[#1A1410];
-    font-family: "Marcellus", serif;
+    @apply bg-[#F5F0E8] text-[#1A1410];
   }
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Marcellus", serif;
-  }
+* {
+  font-family: "Marcellus", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 @layer components {
@@ -24,7 +21,6 @@
 
   .navbar-brand {
     @apply text-2xl md:text-3xl font-bold hover:text-[#2C7873] transition-colors duration-300;
-    font-family: "Marcellus", serif;
   }
 
   .navbar-link {
@@ -54,4 +50,99 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+.banner {
+  @apply relative overflow-hidden h-[60vh] md:h-[70vh];
+  background-color: #1a1410;
+}
+
+.banner-slider {
+  @apply absolute inset-0;
+}
+
+.banner-slide {
+  @apply absolute inset-0;
+  will-change: opacity;
+}
+
+.banner-slide img {
+  @apply w-full h-full object-cover;
+}
+
+.banner-overlay {
+  @apply absolute inset-0 bg-black/60 z-10;
+}
+
+.banner-content {
+  @apply relative z-20 h-[60vh] md:h-[70vh] flex flex-col items-center justify-center text-center px-4;
+}
+
+.banner-title {
+  @apply text-4xl md:text-6xl font-bold text-white mb-8;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.banner-buttons {
+  @apply flex flex-wrap gap-4 justify-center;
+}
+
+.btn-banner {
+  @apply px-8 py-3 bg-[#2C7873] text-white font-semibold rounded-lg hover:bg-[#1F5B57] transition-all duration-300 hover:shadow-lg;
+}
+
+.section {
+  @apply py-16 md:py-20;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl text-center mb-12 text-[#3D3229];
+}
+
+.book-card {
+  @apply bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+}
+
+.book-card-img {
+  @apply w-full h-72 object-cover;
+}
+
+.book-card-body {
+  @apply p-5;
+}
+
+.book-card-title {
+  @apply text-xl font-bold text-[#3D3229] mb-2 line-clamp-2;
+}
+
+.book-card-author {
+  @apply text-[#6B6B6B] text-sm mb-2;
+}
+
+.book-card-genre {
+  @apply inline-block bg-[#EAE3D8] text-[#3D3229] px-3 py-1 rounded-full text-xs font-semibold;
+}
+
+.grid-books {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.genre-card {
+  @apply bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-all duration-300;
+}
+
+.genre-icon {
+  @apply text-5xl mb-3;
+}
+
+.genre-name {
+  @apply text-lg font-bold text-[#3D3229];
+}
+
+.btn-primary {
+  @apply bg-[#2C7873] hover:bg-[#1F5B57] text-white px-6 py-3 rounded font-semibold transition-all duration-300;
+}
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
