@@ -10,6 +10,7 @@ import UpdateBook from "../pages/UpdateBook";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
+import PrivateRoute from "../privateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -27,11 +28,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-book",
-        element: <AddBook></AddBook>,
+        element: (
+          <PrivateRoute>
+            <AddBook></AddBook>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-books",
-        element: <MyBooks></MyBooks>,
+        element: (
+          <PrivateRoute>
+            <MyBooks></MyBooks>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/book/:id",
@@ -39,7 +48,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/update-book/:id",
-        element: <UpdateBook></UpdateBook>,
+        element: (
+          <PrivateRoute>
+            <UpdateBook></UpdateBook>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
