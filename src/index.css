@@ -226,3 +226,62 @@ html {
 .error-message {
   @apply text-red-600 text-xs mt-1;
 }
+
+/* add book form */
+.form-container {
+  @apply min-h-screen bg-gradient-to-br from-[#EAE3D8] via-[#F5F0E8] to-[#EAE3D8] py-16 px-4;
+}
+
+.form-card {
+  @apply max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-8 border border-[#6B5D52]/20;
+}
+
+.form-title {
+  @apply text-3xl md:text-4xl font-bold text-center text-[#3D3229] mb-8;
+}
+
+.form-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.form-full {
+  @apply col-span-full;
+}
+
+.textarea-input {
+  @apply w-full px-4 py-3 bg-[#F5F0E8] border-2 border-[#6B5D52]/30 rounded-lg text-[#3D3229] placeholder:text-[#6B6B6B]/50 focus:outline-none focus:border-[#2C7873] focus:bg-white transition-all duration-300 resize-none;
+  min-height: 120px;
+}
+
+.select-input {
+  @apply w-full px-4 py-3 bg-[#F5F0E8] border-2 border-[#6B5D52]/30 rounded-lg text-[#3D3229] focus:outline-none focus:border-[#2C7873] focus:bg-white transition-all duration-300 cursor-pointer;
+}
+
+.btn-submit {
+  @apply w-full bg-[#2C7873] hover:bg-[#1F5B57] text-white font-bold py-4 rounded-lg transition-all duration-300 hover:shadow-xl;
+  font-size: 1.1rem;
+}
+
+.file-upload-wrapper {
+  @apply relative;
+}
+
+.file-upload-label {
+  @apply flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#F5F0E8] border-2 border-[#6B5D52]/30 border-dashed rounded-lg text-[#6B6B6B] hover:border-[#2C7873] hover:bg-white transition-all duration-300 cursor-pointer;
+}
+
+.file-upload-input {
+  @apply hidden;
+}
+
+.image-preview {
+  @apply mt-4 rounded-lg border-2 border-[#6B5D52]/30 overflow-hidden;
+}
+
+.image-preview img {
+  @apply w-full h-64 object-cover;
+}
+
+.upload-progress {
+  @apply mt-2 text-sm text-[#2C7873] font-semibold text-center;
+}
