@@ -377,3 +377,121 @@ html {
 .btn-details-secondary {
   @apply flex-1 min-w-[150px] bg-[#6B5D52] hover:bg-[#3D3229] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg text-center;
 }
+
+/* All Books*/
+.books-page {
+  @apply min-h-screen bg-gradient-to-br from-[#EAE3D8] via-[#F5F0E8] to-[#EAE3D8] py-16 px-4;
+}
+
+.books-header {
+  @apply text-center mb-12;
+}
+
+.books-page-title {
+  @apply text-4xl md:text-5xl font-bold text-[#3D3229] mb-4;
+}
+
+.books-page-subtitle {
+  @apply text-lg text-[#6B6B6B];
+}
+
+.table-container {
+  @apply max-w-7xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-[#6B5D52]/20;
+}
+
+.books-table {
+  @apply w-full;
+}
+
+.books-table thead {
+  @apply bg-[#3D3229] text-white;
+}
+
+.books-table th {
+  @apply px-6 py-4 text-left text-sm font-bold uppercase tracking-wider;
+}
+
+.books-table tbody tr {
+  @apply border-b border-[#6B5D52]/10 hover:bg-[#F5F0E8] transition-colors duration-200;
+}
+
+.books-table td {
+  @apply px-6 py-4 text-[#3D3229];
+}
+
+.book-table-img {
+  @apply w-16 h-20 object-cover rounded-lg shadow-md;
+}
+
+.book-table-title {
+  @apply font-bold text-[#3D3229] hover:text-[#2C7873] transition-colors;
+}
+
+.genre-badge {
+  @apply inline-block bg-[#EAE3D8] text-[#3D3229] px-3 py-1 rounded-full text-xs font-semibold;
+}
+
+.rating-display {
+  @apply flex items-center gap-1 text-[#C9A961] font-bold;
+}
+
+.btn-update {
+  @apply bg-[#2C7873] hover:bg-[#1F5B57] text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg whitespace-nowrap;
+}
+
+.book-card-mobile {
+  @apply bg-white rounded-xl shadow-md p-4 border border-[#6B5D52]/20 mb-4 hover:shadow-xl transition-all duration-300;
+}
+
+.book-card-mobile-img {
+  @apply w-20 h-28 object-cover rounded-lg shadow-md;
+}
+
+.empty-state {
+  @apply text-center py-16;
+}
+
+.empty-state-icon {
+  @apply text-8xl mb-6 opacity-50;
+}
+
+.empty-state-text {
+  @apply text-2xl text-[#6B6B6B] mb-4;
+}
+
+.spinner-container {
+  @apply flex justify-center items-center min-h-[400px];
+}
+
+.spinner {
+  @apply w-16 h-16 border-4 border-[#EAE3D8] border-t-[#2C7873] rounded-full animate-spin;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    @apply hidden;
+  }
+
+  .btn-update {
+    @apply px-6 py-2.5 text-sm mx-auto block;
+    width: fit-content;
+    min-width: 140px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-cards-container {
+    @apply hidden;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .btn-update {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  .books-table th,
+  .books-table td {
+    @apply px-4 py-3;
+  }
+}
