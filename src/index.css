@@ -538,3 +538,43 @@ html {
     @apply px-3 py-1.5 text-xs;
   }
 }
+
+/* Skeleton Loading */
+.skeleton {
+  @apply bg-gradient-to-r from-[#EAE3D8] via-[#F5F0E8] to-[#EAE3D8];
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-card {
+  @apply w-full bg-white rounded-xl shadow-md p-4 border border-[#6B5D52]/20 mb-4;
+}
+
+.skeleton-table-row {
+  @apply w-full h-20 rounded-lg mb-2;
+}
+
+.skeleton-detail {
+  @apply w-full rounded-lg mb-4;
+}
+
+.skeleton-image {
+  @apply w-full max-w-sm h-96 rounded-lg;
+}
+
+.skeleton-text {
+  @apply h-4 rounded;
+}
+
+.skeleton-text-lg {
+  @apply h-8 rounded;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

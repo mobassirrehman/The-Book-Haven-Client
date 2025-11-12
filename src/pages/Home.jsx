@@ -13,6 +13,7 @@ import { MdLibraryBooks } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { MdTouchApp } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
+import SkeletonLoader from "../components/shared/SkeletonLoader";
 
 const Home = () => {
   useTitle("Home");
@@ -97,9 +98,7 @@ const Home = () => {
           <h2 className="section-title">Latest Additions</h2>
 
           {loading ? (
-            <div className="flex justify-center items-center min-h-[300px]">
-              <div className="w-16 h-16 border-4 border-[#EAE3D8] border-t-[#2C7873] rounded-full animate-spin"></div>
-            </div>
+            <SkeletonLoader type="cards" />
           ) : latestBooks.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-8xl text-yellow-400 items-center flex justify-center mb-6">

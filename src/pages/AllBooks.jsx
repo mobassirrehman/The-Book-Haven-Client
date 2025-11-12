@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import useTitle from "../hooks/useTitle";
 import { gsap } from "gsap";
 import { FaStar } from "react-icons/fa";
+import SkeletonLoader from "../components/shared/SkeletonLoader";
 
 const AllBooks = () => {
   useTitle("All Books");
@@ -80,8 +81,8 @@ const AllBooks = () => {
   if (loading) {
     return (
       <div className="books-page">
-        <div className="spinner-container">
-          <div className="spinner"></div>
+        <div className="container-custom">
+          <SkeletonLoader type="table" />
         </div>
       </div>
     );

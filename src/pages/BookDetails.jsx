@@ -8,6 +8,7 @@ import { FaBook } from "react-icons/fa";
 import { TiPencil } from "react-icons/ti";
 import { FaUser } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
+import SkeletonLoader from "../components/shared/SkeletonLoader";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -73,8 +74,10 @@ const BookDetails = () => {
   if (loading) {
     return (
       <div className="details-page">
-        <div className="spinner-container">
-          <div className="spinner"></div>
+        <div className="details-container">
+          <div className="details-card">
+            <SkeletonLoader type="details" />
+          </div>
         </div>
       </div>
     );
@@ -120,11 +123,7 @@ const BookDetails = () => {
               </svg>
               Back
             </button>
-            <h1
-              className="text-4xl font-bold"
-            >
-              Book Details
-            </h1>
+            <h1 className="text-4xl font-bold">Book Details</h1>
           </div>
 
           <div className="details-content">
@@ -150,12 +149,16 @@ const BookDetails = () => {
               </div>
 
               <div className="details-section">
-                <h3 className="details-section-title"><FaBookOpen /> Summary</h3>
+                <h3 className="details-section-title">
+                  <FaBookOpen /> Summary
+                </h3>
                 <p className="details-summary">{book.summary}</p>
               </div>
 
               <div className="details-section">
-                <h3 className="details-section-title"><FaUser /> Added By</h3>
+                <h3 className="details-section-title">
+                  <FaUser /> Added By
+                </h3>
                 <div className="details-added-by">
                   <p className="details-user-info">
                     <span className="details-user-name">{book.userName}</span>
@@ -177,10 +180,13 @@ const BookDetails = () => {
                   to={`/update-book/${book._id}`}
                   className="btn-details-action flex items-center"
                 >
-                  <TiPencil className="mr-0.5"/> Update Book
+                  <TiPencil className="mr-0.5" /> Update Book
                 </Link>
-                <Link to="/all-books" className="btn-details-secondary flex items-center">
-                <FaBook className="mr-1" /> All Books
+                <Link
+                  to="/all-books"
+                  className="btn-details-secondary flex items-center"
+                >
+                  <FaBook className="mr-1" /> All Books
                 </Link>
               </div>
             </div>

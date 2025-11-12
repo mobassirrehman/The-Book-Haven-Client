@@ -6,6 +6,7 @@ import useTitle from "../hooks/useTitle";
 import { gsap } from "gsap";
 import { FaBookOpen } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import SkeletonLoader from "../components/shared/SkeletonLoader";
 
 const MyBooks = () => {
   useTitle("My Books");
@@ -107,8 +108,8 @@ const MyBooks = () => {
   if (loading) {
     return (
       <div className="my-books-page">
-        <div className="spinner-container">
-          <div className="spinner"></div>
+        <div className="container-custom">
+          <SkeletonLoader type="table" />
         </div>
       </div>
     );

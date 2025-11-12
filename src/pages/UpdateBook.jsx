@@ -1,11 +1,16 @@
-import React from 'react';
+import React from "react";
+import SkeletonLoader from "../components/shared/SkeletonLoader";
 
-const UpdateBook = () => {
+const UpdateBook = ({ loading }) => {
+  if (loading) {
     return (
-        <div>
-            
+      <div className="update-page">
+        <div className="update-card">
+          <SkeletonLoader type="form" />
         </div>
+      </div>
     );
+  }
 };
 
 export default UpdateBook;
