@@ -85,7 +85,7 @@ const BookDetails = () => {
       <div className="details-page">
         <div className="container-custom">
           <div className="empty-state">
-            <div className="empty-state-icon">📚</div>
+            <div className="empty-state-icon"></div>
             <h2 className="empty-state-text">Book Not Found</h2>
             <p className="text-[#6B6B6B] mb-8">
               The book you're looking for doesn't exist.
@@ -122,7 +122,6 @@ const BookDetails = () => {
             </button>
             <h1
               className="text-4xl font-bold"
-              style={{ fontFamily: "Marcellus, serif" }}
             >
               Book Details
             </h1>

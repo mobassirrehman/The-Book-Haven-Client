@@ -459,14 +459,6 @@ html {
   @apply text-2xl text-[#6B6B6B] mb-4;
 }
 
-.spinner-container {
-  @apply flex justify-center items-center min-h-[400px];
-}
-
-.spinner {
-  @apply w-16 h-16 border-4 border-[#EAE3D8] border-t-[#2C7873] rounded-full animate-spin;
-}
-
 @media (max-width: 768px) {
   .table-container {
     @apply hidden;
@@ -493,5 +485,56 @@ html {
   .books-table th,
   .books-table td {
     @apply px-4 py-3;
+  }
+}
+
+/* My Books Page */
+.my-books-page {
+  @apply min-h-screen bg-gradient-to-br from-[#EAE3D8] via-[#F5F0E8] to-[#EAE3D8] py-16 px-4;
+}
+
+.my-books-header {
+  @apply text-center mb-12;
+}
+
+.my-books-title {
+  @apply text-4xl md:text-5xl font-bold text-[#3D3229] mb-4;
+}
+
+.my-books-subtitle {
+  @apply text-lg text-[#6B6B6B];
+}
+
+.btn-delete {
+  @apply bg-red-700 hover:bg-red-900 cursor-pointer text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg whitespace-nowrap;
+}
+
+.btn-edit {
+  @apply bg-[#2C7873] hover:bg-[#1F5B57] cursor-pointer text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg whitespace-nowrap;
+}
+
+.action-buttons {
+  @apply flex gap-2;
+}
+
+@media (max-width: 768px) {
+  .btn-delete,
+  .btn-edit {
+    @apply px-3 py-2 text-xs;
+  }
+
+  .action-buttons {
+    @apply flex-col gap-2;
+  }
+
+  .book-card-mobile .action-buttons {
+    @apply flex-row;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .btn-delete,
+  .btn-edit {
+    @apply px-3 py-1.5 text-xs;
   }
 }
