@@ -11,6 +11,7 @@ const AllBooks = () => {
   useTitle("All Books");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("");
 
   const headerRef = useRef(null);
   const tableRef = useRef(null);
@@ -32,6 +33,11 @@ const AllBooks = () => {
         setLoading(false);
       });
   }, []);
+
+  const sortedBooks =
+    sortBy === "rating"
+      ? [...books].sort((a, b) => b.rating - a.rating)
+      : books;
 
   useEffect(() => {
     if (!loading && books.length > 0) {
@@ -119,6 +125,16 @@ const AllBooks = () => {
           <p className="books-page-subtitle">
             Browse our complete collection of {books.length} books
           </p>
+          <div className="flex justify-center mt-6">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-6 py-3 bg-white border-2 border-[#6B5D52]/30 rounded-lg text-[#3D3229] font-semibold focus:outline-none focus:border-[#2C7873] transition-all duration-300 cursor-pointer"
+            >
+              <option value="">Sort by: Default</option>
+              <option value="rating">Sort by: Rating (High to Low)</option>
+            </select>
+          </div>
         </div>
 
         <div ref={tableRef} className="table-container">
@@ -134,7 +150,7 @@ const AllBooks = () => {
               </tr>
             </thead>
             <tbody>
-              {books.map((book) => (
+              {sortedBooks.map((book) => (
                 <tr key={book._id} className="table-row">
                   <td>
                     <img
@@ -174,7 +190,7 @@ const AllBooks = () => {
         </div>
 
         <div ref={cardsRef} className="mobile-cards-container">
-          {books.map((book) => (
+          {sortedBooks.map((book) => (
             <div key={book._id} className="book-card-mobile">
               <div className="flex gap-4">
                 <img

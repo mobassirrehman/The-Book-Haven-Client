@@ -652,3 +652,233 @@ html {
     background-position: -200% 0;
   }
 }
+/* Dark Mode */
+[data-theme="dark"] body {
+  background-color: #1a1410;
+  color: #b8b8b8;
+}
+
+[data-theme="dark"] .navbar {
+  background-color: #2a2419;
+}
+
+[data-theme="dark"] .navbar-brand {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="dark"] .navbar-link {
+  color: #b8b8b8;
+}
+
+[data-theme="dark"] .banner-title {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="dark"] .btn-banner {
+  background: rgba(44, 120, 115, 0.9);
+}
+
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .books-page-title,
+[data-theme="dark"] .my-books-title {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .books-page-subtitle,
+[data-theme="dark"] .my-books-subtitle {
+  color: #999999;
+}
+
+[data-theme="dark"] .books-page {
+  background: linear-gradient(to bottom right, #eae3d8, #f5f0e8, #eae3d8);
+}
+
+[data-theme="dark"] .books-page-title {
+  color: #3d3229;
+}
+
+[data-theme="dark"] .books-page-subtitle {
+  color: #6b6b6b;
+}
+
+[data-theme="dark"] .book-card {
+  background-color: #2a2419;
+  border-color: #3d3229;
+}
+
+[data-theme="dark"] .book-card-title {
+  color: #e5e5e5;
+}
+
+[data-theme="dark"] .book-card-author {
+  color: #999999;
+}
+
+[data-theme="dark"] .book-card-body {
+  background: #2a2419;
+}
+
+[data-theme="dark"] .book-card-genre {
+  background-color: #3d3229;
+  color: #b8b8b8;
+  border-color: #2c7873;
+}
+
+[data-theme="dark"] .genre-card {
+  background-color: #2a2419;
+  border-color: #3d3229;
+}
+
+[data-theme="dark"] .genre-name {
+  color: #e5e5e5;
+}
+
+[data-theme="dark"] .table-container {
+  background-color: #2a2419;
+  border-color: #3d3229;
+}
+
+[data-theme="dark"] .books-table {
+  background-color: #2a2419;
+}
+
+[data-theme="dark"] .books-table thead {
+  background-color: #3d3229;
+}
+
+[data-theme="dark"] .books-table th {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .books-table tbody tr {
+  background-color: #2a2419;
+  border-color: #3d3229;
+}
+
+[data-theme="dark"] .books-table tbody tr:hover {
+  background-color: #3d3229;
+}
+
+[data-theme="dark"] .books-table td {
+  color: #b8b8b8;
+}
+
+[data-theme="dark"] .book-table-title {
+  color: #e5e5e5;
+}
+
+/* Mobile Book Cards*/
+[data-theme="dark"] .book-card-mobile {
+  background-color: #2a2419;
+  border-color: #3d3229;
+}
+
+[data-theme="dark"] .book-card-mobile h3,
+[data-theme="dark"] .book-card-mobile p,
+[data-theme="dark"] .book-card-mobile span {
+  color: #b8b8b8;
+}
+
+/* Book Details */
+[data-theme="dark"] .details-card {
+  background-color: #2a2419;
+}
+
+[data-theme="dark"] .details-title {
+  color: #e5e5e5;
+}
+
+[data-theme="dark"] .details-author,
+[data-theme="dark"] .details-summary {
+  color: #999999;
+}
+
+[data-theme="dark"] .details-genre-badge {
+  background-color: #3d3229;
+  color: #b8b8b8;
+}
+
+[data-theme="dark"] .form-card,
+[data-theme="dark"] .auth-card {
+  background-color: #2a2419;
+}
+
+[data-theme="dark"] .form-title,
+[data-theme="dark"] .auth-title {
+  color: #e5e5e5;
+}
+
+[data-theme="dark"] .form-label,
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .textarea-input,
+[data-theme="dark"] .select-input {
+  color: #b8b8b8;
+  background-color: #1a1410;
+  border-color: #3d3229;
+}
+
+[data-theme="dark"] .section.bg-white,
+[data-theme="dark"] .section.bg-f5f0e8 {
+  background-color: #1a1410;
+}
+
+[data-theme="dark"] .genre-icon {
+  color: #c18c5d;
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.1));
+}
+[data-theme="dark"] .section {
+  background-color: #1a1410;
+}
+
+[data-theme="dark"] .genre-card {
+  background-color: #2a2419;
+  border-color: #3d3229;
+}
+
+[data-theme="dark"] .genre-icon {
+  color: #c18c5d;
+}
+
+[data-theme="dark"] .genre-name {
+  color: #e5e5e5;
+}
+
+/* Mobile Cards Container */
+.mobile-cards-container {
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .mobile-cards-container {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-cards-container {
+    display: block;
+  }
+}
+
+/* Dark Mode for Mobile Cards */
+[data-theme="dark"] .book-card-mobile h3 {
+  color: #e5e5e5 !important;
+}
+
+[data-theme="dark"] .book-card-mobile .text-\[\#3D3229\] {
+  color: #e5e5e5 !important;
+}
+
+[data-theme="dark"] .book-card-mobile .text-\[\#6B6B6B\] {
+  color: #999999 !important;
+}
+
+[data-theme="dark"] .book-card-mobile .genre-badge {
+  background-color: #3d3229 !important;
+  color: #b8b8b8 !important;
+}
+
+[data-theme="dark"] .book-card-mobile .btn-update {
+  background-color: rgba(44, 120, 115, 0.9) !important;
+  color: white !important;
+}

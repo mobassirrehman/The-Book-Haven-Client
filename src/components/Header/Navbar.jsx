@@ -4,9 +4,12 @@ import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import { IoMdLogOut } from "react-icons/io";
+import { useTheme } from "../../context/ThemeContext";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
+  const { theme, toggleTheme } = useTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -110,6 +113,18 @@ const Navbar = () => {
                 <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
               </svg>
             </label>
+
+            <button
+              onClick={toggleTheme}
+              className="btn btn-ghost btn-circle hover:bg-transparent"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? (
+                <MdDarkMode className="text-2xl text-[#3D3229]" />
+              ) : (
+                <MdLightMode className="text-2xl text-[#F5F0E8]" />
+              )}
+            </button>
 
             {loading ? (
               <div className="w-8 h-8 border-4 border-white border-t-[#2C7873] rounded-full animate-spin"></div>

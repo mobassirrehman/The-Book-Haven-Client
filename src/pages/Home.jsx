@@ -182,7 +182,7 @@ const Home = () => {
       <section className="section bg-[#3D3229] text-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="text-8xl text-yellow-400 items-center flex justify-center mb-6">
+            <div className="text-8xl text-[#c18c5d] items-center flex justify-center mb-6">
               <IoBookSharp />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">

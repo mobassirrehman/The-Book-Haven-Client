@@ -1,16 +1,88 @@
-# React + Vite
+# 📚 The Book Haven - Digital Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application for book lovers to explore, add, update, and manage their personal digital library with a beautiful vintage aesthetic.
 
-Currently, two official plugins are available:
+Live Site:  
+Server Repository:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📚 Complete CRUD Operations
+- 🔐 Secure Authentication System
+- 🎨 Vintage Retro Design
+- 👤 Personal Library Management
+- 🔍 Advanced Book Filtering
+- 📱 Fully Responsive Design
+- ⚡ Modern Tech Stack
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+**Frontend:**
+
+- React 19 + React Router DOM
+- Tailwind CSS + DaisyUI
+- Firebase Authentication
+- Axios for API calls
+- GSAP for animations
+- React Hot Toast for notifications
+- React Tooltip for enhanced UX
+- Date-fns for date formatting
+
+**Backend:**
+
+- Node.js + Express.js
+- MongoDB Atlas
+- CORS middleware
+- dotenv for environment variables
+
+---
+
+
+## 📦 npm Packages Used
+
+| `axios`
+| `date-fns`
+| `firebase`
+| `gsap`
+| `react-hot-toast`
+| `react-tooltip`
+| `react-icons`
+| `tailwindcss` 
+| `daisyui`        
+
+---
+
+## 🌟 Unique Features
+
+### Smart Authentication
+
+- Protected routes for authenticated users only
+- Persistent login state across page refreshes
+- User-friendly error handling with toast notifications
+
+### Optimized User Experience
+
+- Loading skeletons while fetching data
+- Real-time book updates
+- Web-first responsive design
+- Custom 404 error page
+
+## 👨‍💻 Developer
+
+**The Grim**
+
+- GitHub: [@mobassirrehman](https://github.com/mobassirrehman)
+- Email: mobassir.rehman@icloud.com
+
+---
+
+## 🙏 Acknowledgments
+
+- Firebase for authentication services
+- MongoDB Atlas for database hosting
+- ImgBB for image hosting
+- Flaticon for favicon resources
