@@ -120,7 +120,7 @@ const MyBooks = () => {
       <div className="my-books-page">
         <div className="container-custom">
           <div className="empty-state">
-            <div className="empty-state-icon flex">
+            <div className="empty-state-icon flex justify-center">
               <FaBookOpen />
             </div>
             <h2 className="empty-state-text">
@@ -129,11 +129,13 @@ const MyBooks = () => {
             <p className="text-[#6B6B6B] mb-8">
               Start building your collection by adding your first book!
             </p>
-            <Link to="/add-book">
-              <button className="btn btn-outline text-white/80 bg-[#6B6B6B]">
+           <div className="flex justify-center">
+           <Link className="" to="/add-book">
+              <button className="btn-details-secondary flex items-center">
                 Add Your First Book
               </button>
             </Link>
+           </div>
           </div>
         </div>
       </div>

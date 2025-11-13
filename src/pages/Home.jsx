@@ -28,6 +28,10 @@ const Home = () => {
   const slide1Ref = useRef(null);
   const slide2Ref = useRef(null);
 
+  // useEffect(() => {
+  //   throw new Error("Test error!");
+  // }, []);
+
   useEffect(() => {
     fetch("http://localhost:3000/books/latest")
       .then((res) => res.json())

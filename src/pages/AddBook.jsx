@@ -13,7 +13,7 @@ const AddBook = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [uploading, setUploading] = useState(false);
-  const setImagePreview = useState("");
+  const [imagePreview, setImagePreview] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [uploadMethod, setUploadMethod] = useState("file");
 
@@ -340,6 +340,17 @@ const AddBook = () => {
                         Please enter a valid image URL (.jpg, .png, .gif, etc.)
                       </p>
                     )}
+                </div>
+              )}
+              {imagePreview && (
+                <div className="image-preview">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    onError={() => {
+                      setImagePreview("");
+                    }}
+                  />
                 </div>
               )}
             </div>

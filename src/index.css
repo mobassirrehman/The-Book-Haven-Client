@@ -273,13 +273,12 @@ html {
 .file-upload-input {
   @apply hidden;
 }
-
 .image-preview {
   @apply mt-4 rounded-lg border-2 border-[#6B5D52]/30 overflow-hidden;
 }
 
 .image-preview img {
-  @apply w-full h-64 object-cover;
+  @apply w-64 h-64 md:w-80 md:h-80 object-cover mx-auto;
 }
 
 .upload-progress {

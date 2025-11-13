@@ -9,6 +9,7 @@ import { TiPencil } from "react-icons/ti";
 import { FaUser } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
 import SkeletonLoader from "../components/shared/SkeletonLoader";
+import { IoArrowBack } from "react-icons/io5";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -108,19 +109,7 @@ const BookDetails = () => {
         <div ref={cardRef} className="details-card">
           <div className="details-header">
             <button onClick={() => navigate(-1)} className="details-back-btn">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
+              <IoArrowBack className="text-xl" />
               Back
             </button>
             <h1 className="text-4xl font-bold">Book Details</h1>

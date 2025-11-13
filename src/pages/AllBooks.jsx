@@ -5,6 +5,7 @@ import useTitle from "../hooks/useTitle";
 import { gsap } from "gsap";
 import { FaStar } from "react-icons/fa";
 import SkeletonLoader from "../components/shared/SkeletonLoader";
+import { SiBookstack } from "react-icons/si";
 
 const AllBooks = () => {
   useTitle("All Books");
@@ -93,7 +94,10 @@ const AllBooks = () => {
       <div className="books-page">
         <div className="container-custom">
           <div className="empty-state">
-            <div className="empty-state-icon">📚</div>
+            <div className="empty-state-icon flex justify-center">
+              {" "}
+              <SiBookstack className="text-[#6B5D52]" />
+            </div>
             <h2 className="empty-state-text">No Books in the Library Yet</h2>
             <p className="text-[#6B6B6B] mb-8">
               Be the first to add a book to our collection!
