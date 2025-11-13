@@ -28,10 +28,6 @@ const Home = () => {
   const slide1Ref = useRef(null);
   const slide2Ref = useRef(null);
 
-  // useEffect(() => {
-  //   throw new Error("Test error!");
-  // }, []);
-
   useEffect(() => {
     fetch("http://localhost:3000/books/latest")
       .then((res) => res.json())
@@ -154,7 +150,7 @@ const Home = () => {
 
       <section className="section bg-[#F5F0E8] py-12">
         <div className="container-custom">
-          <h2 className="section-title text-center text-2xl font-semibold mb-8">
+          <h2 className="section-title">
             Explore by Genre
           </h2>
 

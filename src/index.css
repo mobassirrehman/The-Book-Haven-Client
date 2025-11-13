@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 @import url("https://fonts.googleapis.com/css2?family=Marcellus&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap");
 
 @layer base {
   body {
@@ -9,38 +10,92 @@
 }
 
 * {
-  font-family: "Marcellus", serif;
+  font-family: "Crimson Text", serif;
   font-weight: 400;
-  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand,
+.section-title,
+.book-card-title,
+.genre-name,
+.banner-title,
+.books-page-title,
+.my-books-title,
+.details-title,
+.auth-title,
+.form-title {
+  font-family: "Marcellus", serif;
+}
+
+body,
+p,
+span,
+a,
+button,
+input,
+textarea,
+select {
+  font-family: "Crimson Text", serif;
+  line-height: 1.6;
 }
 
 @layer components {
   .navbar {
     @apply bg-[#e0c388] shadow-lg sticky top-0 z-50;
+    border-bottom: 2px solid rgba(61, 50, 41, 0.1);
+  }
+  .btn-ghost:hover {
+    @apply bg-transparent;
+  }
+  .btn-ghost:focus {
+    @apply bg-transparent;
   }
 
+  .btn-circle {
+    @apply bg-transparent;
+  }
+  .navbar .btn:hover {
+    @apply bg-transparent;
+  }
   .navbar-brand {
-    @apply text-2xl md:text-3xl font-bold hover:text-[#2C7873] transition-colors duration-300;
+    @apply text-2xl md:text-3xl font-bold text-[#3D3229] hover:text-[#2C7873] transition-colors duration-300;
+    letter-spacing: 0.5px;
   }
 
   .navbar-link {
-    @apply hover:text-[#2C7873] px-3 py-2 transition-colors duration-300 font-semibold text-sm md:text-base;
+    @apply hover:text-[#2C7873] px-3 py-2 transition-colors duration-300 font-semibold text-[#3D3229];
+    font-size: 1rem;
   }
 
   .navbar-link-active {
     @apply text-[#2C7873] border-b-2 border-[#2C7873];
   }
-
-  .navbar-dropdown {
-    @apply absolute right-0 mt-2 w-56 rounded-lg shadow-xl border border-[#EAE3D8] overflow-hidden;
+  .navbar .container-custom {
+    @apply py-2;
   }
 
-  .navbar-dropdown-item {
-    @apply block px-4 py-3 text-[#3D3229] hover:bg-[#F5F0E8] transition-colors duration-200 font-medium;
+  .navbar-dropdown-glass {
+    @apply absolute right-0 mt-2 w-64 rounded-xl shadow-2xl overflow-hidden;
+    background: rgba(255, 255, 255, 0.031);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.137);
+  }
+
+  .navbar-dropdown-item-glass {
+    @apply block px-4 py-3 text-[#89837d] hover:bg-white/20 transition-all duration-200 font-medium;
   }
 
   .btn-primary {
-    @apply bg-[#2C7873] hover:bg-[#1F5B57] px-6 py-2 rounded font-semibold transition-all duration-300 text-sm md:text-base;
+    @apply bg-[#2C7873] hover:bg-[#1F5B57] px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 text-white;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
   }
 
   .container-custom {
@@ -80,15 +135,18 @@ html {
 
 .banner-title {
   @apply text-4xl md:text-6xl font-bold text-white mb-8;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
 }
 
 .banner-buttons {
-  @apply flex flex-wrap gap-4 justify-center;
+  @apply flex flex-wrap gap-6 justify-center;
 }
 
 .btn-banner {
-  @apply px-8 py-3 bg-[#2C7873] text-white font-semibold rounded-lg hover:bg-[#1F5B57] transition-all duration-300 hover:shadow-lg;
+  @apply px-8 py-4 bg-[#2C7873] text-white font-semibold rounded-lg hover:bg-[#1F5B57] transition-all duration-300 hover:shadow-2xl hover:scale-105;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
 }
 
 .section {
@@ -96,19 +154,36 @@ html {
 }
 
 .section-title {
-  @apply text-3xl md:text-4xl text-center mb-12 text-[#3D3229];
+  @apply text-3xl md:text-4xl text-center mb-16 text-[#3D3229];
+  font-family: "Marcellus", serif;
+  letter-spacing: 1px;
+  position: relative;
+}
+.section-title::after {
+  content: "";
+  @apply absolute left-1/2 -translate-x-1/2 bottom-0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #2c7873, transparent);
+  margin-top: 12px;
 }
 
 .book-card {
-  @apply bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+  @apply bg-[#FDFCF9] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2;
+  border: 1px solid #e8e3d8;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .book-card-img {
   @apply w-full h-72 object-cover;
+  border-bottom: 2px solid #e8e3d8;
 }
 
 .book-card-body {
-  @apply p-5;
+  @apply p-6 flex-1 flex flex-col;
+  background: linear-gradient(to bottom, #fdfcf9, #f9f7f3);
 }
 
 .book-card-title {
@@ -116,36 +191,36 @@ html {
 }
 
 .book-card-author {
-  @apply text-[#6B6B6B] text-sm mb-2;
+  @apply text-[#6B6B6B] text-sm mb-3;
+  font-weight: 500;
 }
 
 .book-card-genre {
-  @apply inline-block bg-[#EAE3D8] text-[#3D3229] px-3 py-1 rounded-full text-xs font-semibold;
+  @apply inline-block bg-[#EAE3D8] text-[#3D3229] px-4 py-1.5 rounded-full text-xs font-semibold;
+  border: 1px solid #d4cbbd;
 }
 
 .grid-books {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
 }
 
 .genre-card {
-  @apply bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-all duration-300;
+  @apply bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+  border: 1px solid #e8e3d8;
+  height: 100%;
+  min-height: 180px;
 }
 
 .genre-icon {
-  @apply text-5xl mb-3;
+  @apply text-5xl mb-4;
+  color: #c18c5d;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .genre-name {
   @apply text-lg font-bold text-[#3D3229];
 }
 
-.btn-primary {
-  @apply bg-[#2C7873] hover:bg-[#1F5B57] text-white px-6 py-3 rounded font-semibold transition-all duration-300;
-}
-
-.container-custom {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
 /* login & register */
 .auth-page {
   @apply min-h-screen bg-gradient-to-br from-[#EAE3D8] via-[#F5F0E8] to-[#EAE3D8] py-16 px-4;
@@ -192,7 +267,7 @@ html {
 }
 
 .btn-auth {
-  @apply w-full bg-[#2C7873] hover:bg-[#1F5B57] text-white font-bold py-3 rounded-lg transition-all duration-300 hover:shadow-lg;
+  @apply w-full bg-[#2C7873] hover:bg-[#1F5B57] text-white font-bold py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105;
 }
 
 .btn-google {
@@ -258,7 +333,7 @@ html {
 }
 
 .btn-submit {
-  @apply w-full bg-[#2C7873] hover:bg-[#1F5B57] text-white font-bold py-4 rounded-lg transition-all duration-300 hover:shadow-xl;
+  @apply w-full bg-[#2C7873] hover:bg-[#1F5B57] text-white font-bold py-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-105;
   font-size: 1.1rem;
 }
 
@@ -370,11 +445,11 @@ html {
 }
 
 .btn-details-action {
-  @apply flex-1 min-w-[150px] bg-[#2C7873] hover:bg-[#1F5B57] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg text-center;
+  @apply flex-1 min-w-[150px] bg-[#2C7873] hover:bg-[#1F5B57] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 text-center;
 }
 
 .btn-details-secondary {
-  @apply flex-1 min-w-[150px] bg-[#6B5D52] hover:bg-[#3D3229] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg text-center;
+  @apply flex-1 min-w-[150px] bg-[#6B5D52] hover:bg-[#3D3229] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 text-center;
 }
 
 /* All Books*/
@@ -505,11 +580,11 @@ html {
 }
 
 .btn-delete {
-  @apply bg-red-700 hover:bg-red-900 cursor-pointer text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg whitespace-nowrap;
+  @apply bg-red-700 hover:bg-red-900 cursor-pointer text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 whitespace-nowrap;
 }
 
 .btn-edit {
-  @apply bg-[#2C7873] hover:bg-[#1F5B57] cursor-pointer text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg whitespace-nowrap;
+  @apply bg-[#2C7873] hover:bg-[#1F5B57] cursor-pointer text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 whitespace-nowrap;
 }
 
 .action-buttons {

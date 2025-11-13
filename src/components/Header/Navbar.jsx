@@ -3,6 +3,7 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import { IoMdLogOut } from "react-icons/io";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
@@ -82,8 +83,34 @@ const Navbar = () => {
           </Link>
 
           <ul className="hidden lg:flex items-center gap-2">{navLinks}</ul>
- 
-          <div className="flex items-center gap-4">
+
+          <div className="flex items-center gap-3 md:gap-6">
+            <label className="btn btn-ghost hover:bg-transparent swap swap-rotate lg:hidden">
+              <input
+                type="checkbox"
+                checked={isMobileMenuOpen}
+                onChange={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+              <svg
+                className="swap-off fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+              >
+                <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+              </svg>
+              <svg
+                className="swap-on fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+              >
+                <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+              </svg>
+            </label>
+
             {loading ? (
               <div className="w-8 h-8 border-4 border-white border-t-[#2C7873] rounded-full animate-spin"></div>
             ) : user ? (
@@ -105,17 +132,17 @@ const Navbar = () => {
                       className="fixed inset-0 z-40"
                       onClick={() => setIsDropdownOpen(false)}
                     ></div>
-                    <div className="navbar-dropdown z-50">
+                    <div className="navbar-dropdown-glass z-50">
                       <div className="px-4 py-3 border-b border-[#EAE3D8]">
-                        <p className="font-bold text-[#3D3229]">
+                        <p className="font-bold text-[#a2a19c]">
                           {user?.displayName || "User"}
                         </p>
-                        <p className="text-sm text-[#6B6B6B]">{user?.email}</p>
+                        <p className="text-sm text-[#888782]">{user?.email}</p>
                       </div>
 
                       <Link
                         to="/my-books"
-                        className="navbar-dropdown-item"
+                        className="navbar-dropdown-item-glass text-[#8c8484] hover:text-[#0c0c0c]"
                         onClick={() => setIsDropdownOpen(false)}
                       >
                         My Books
@@ -123,8 +150,9 @@ const Navbar = () => {
 
                       <button
                         onClick={handleSignOut}
-                        className="navbar-dropdown-item w-full text-left text-red-600 hover:bg-red-50"
+                        className="navbar-dropdown-item-glass cursor-pointer flex items-center w-full text-left hover:text-red-800"
                       >
+                        <IoMdLogOut className="text-lg mr-1" />
                         Logout
                       </button>
                     </div>
@@ -141,34 +169,6 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
-
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden focus:outline-none"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {isMobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
           </div>
         </div>
 
