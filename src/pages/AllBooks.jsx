@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { FaStar } from "react-icons/fa";
 import SkeletonLoader from "../components/shared/SkeletonLoader";
 import { SiBookstack } from "react-icons/si";
+import axios from "axios";
 
 const AllBooks = () => {
   useTitle("All Books");
@@ -18,13 +19,10 @@ const AllBooks = () => {
   const cardsRef = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/books")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch books");
-        return res.json();
-      })
-      .then((data) => {
-        setBooks(data);
+    axios
+      .get("http://localhost:3000/books")
+      .then((response) => {
+        setBooks(response.data);
         setLoading(false);
       })
       .catch((error) => {

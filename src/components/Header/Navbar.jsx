@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { IoMdLogOut } from "react-icons/io";
 import { useTheme } from "../../context/ThemeContext";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
@@ -118,6 +119,12 @@ const Navbar = () => {
               onClick={toggleTheme}
               className="btn btn-ghost btn-circle hover:bg-transparent"
               aria-label="Toggle theme"
+              data-tooltip-id="theme-tooltip"
+              data-tooltip-content={
+                theme === "light"
+                  ? "Switch to Dark Mode"
+                  : "Switch to Light Mode"
+              }
             >
               {theme === "light" ? (
                 <MdDarkMode className="text-2xl text-[#3D3229]" />
@@ -125,6 +132,7 @@ const Navbar = () => {
                 <MdLightMode className="text-2xl text-[#F5F0E8]" />
               )}
             </button>
+            <Tooltip id="theme-tooltip" place="bottom" />
 
             {loading ? (
               <div className="w-8 h-8 border-4 border-white border-t-[#2C7873] rounded-full animate-spin"></div>
@@ -133,14 +141,17 @@ const Navbar = () => {
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="flex items-center gap-2 focus:outline-none"
-                  title={user?.displayName || "User"}
+                  data-tooltip-id="user-tooltip"
+                  data-tooltip-content={user?.displayName || "User"}
                 >
                   <img
                     src={user?.photoURL || ""}
                     alt={user?.displayName}
-                    className="w-10 h-10 rounded-full border-2 border-[#2C7873] object-cover hover:border-[#EAE3D8] transition-all"
+                    className="w-10 h-10 rounded-full cursor-pointer border-2 border-[#2C7873] object-cover hover:border-[#EAE3D8] transition-all"
                   />
                 </button>
+                <Tooltip id="user-tooltip" place="bottom" />
+
                 {isDropdownOpen && (
                   <>
                     <div
@@ -149,15 +160,15 @@ const Navbar = () => {
                     ></div>
                     <div className="navbar-dropdown-glass z-50">
                       <div className="px-4 py-3 border-b border-[#EAE3D8]">
-                        <p className="font-bold text-[#a2a19c]">
+                        <p className="font-bold text-[#565350]">
                           {user?.displayName || "User"}
                         </p>
-                        <p className="text-sm text-[#888782]">{user?.email}</p>
+                        <p className="text-sm text-[#393937]">{user?.email}</p>
                       </div>
 
                       <Link
                         to="/my-books"
-                        className="navbar-dropdown-item-glass text-[#8c8484] hover:text-[#0c0c0c]"
+                        className="navbar-dropdown-item-glass text-[#0c0c0c]"
                         onClick={() => setIsDropdownOpen(false)}
                       >
                         My Books

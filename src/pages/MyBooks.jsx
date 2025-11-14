@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import useTitle from "../hooks/useTitle";
 import { gsap } from "gsap";
+import axios from "axios";
 import { FaBookOpen } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import SkeletonLoader from "../components/shared/SkeletonLoader";
@@ -13,6 +14,7 @@ const MyBooks = () => {
   const { user } = useContext(AuthContext);
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [deleteId, setDeleteId] = useState(null);
 
   const headerRef = useRef(null);
   const tableRef = useRef(null);
@@ -20,13 +22,10 @@ const MyBooks = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/books/user/${user.email}`)
-        .then((res) => {
-          if (!res.ok) throw new Error("Failed to fetch books");
-          return res.json();
-        })
-        .then((data) => {
-          setBooks(data);
+      axios
+        .get(`http://localhost:3000/books/user/${user.email}`)
+        .then((response) => {
+          setBooks(response.data);
           setLoading(false);
         })
         .catch((error) => {
@@ -83,25 +82,25 @@ const MyBooks = () => {
     }
   }, [loading, books]);
 
-  const handleDelete = (id, title) => {
-    if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
-      fetch(`http://localhost:3000/books/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error("Failed to delete");
-          return res.json();
-        })
-        .then((data) => {
-          if (data.deletedCount > 0) {
-            setBooks(books.filter((book) => book._id !== id));
-            toast.success("Book deleted successfully!");
-          }
-        })
-        .catch((error) => {
-          console.error("Error deleting book:", error);
-          toast.error("Failed to delete book");
-        });
+  const handleDelete = async (id) => {
+    if (deleteId !== id) {
+      setDeleteId(id);
+      toast("Click delete again to confirm", { icon: "⚠️" });
+      setTimeout(() => setDeleteId(null), 3000);
+      return;
+    }
+
+    try {
+      const response = await axios.delete(`http://localhost:3000/books/${id}`);
+
+      if (response.data.deletedCount > 0) {
+        setBooks(books.filter((book) => book._id !== id));
+        toast.success("Book deleted successfully!");
+        setDeleteId(null);
+      }
+    } catch (error) {
+      console.error("Error deleting book:", error);
+      toast.error("Failed to delete book");
     }
   };
 
@@ -129,13 +128,13 @@ const MyBooks = () => {
             <p className="text-[#6B6B6B] mb-8">
               Start building your collection by adding your first book!
             </p>
-           <div className="flex justify-center">
-           <Link className="" to="/add-book">
-              <button className="btn-details-secondary flex items-center">
-                Add Your First Book
-              </button>
-            </Link>
-           </div>
+            <div className="flex justify-center">
+              <Link className="" to="/add-book">
+                <button className="btn-details-secondary flex items-center">
+                  Add Your First Book
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

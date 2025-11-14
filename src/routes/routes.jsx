@@ -44,7 +44,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/book/:id",
-        element: <BookDetails></BookDetails>,
+        element: (
+          <PrivateRoute>
+            <BookDetails></BookDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update-book/:id",

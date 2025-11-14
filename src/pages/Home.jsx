@@ -14,31 +14,49 @@ import { FaUsers } from "react-icons/fa";
 import { MdTouchApp } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import SkeletonLoader from "../components/shared/SkeletonLoader";
+import axios from "axios";
 
 const Home = () => {
   useTitle("Home");
 
   const [latestBooks, setLatestBooks] = useState([]);
+  const [topRatedBooks, setTopRatedBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingTopRated, setLoadingTopRated] = useState(true);
+
   const bannerImages = [
-    "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&q=80",
-    "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&q=80",
+    "https://i.ibb.co.com/PkLY22P/library-9.jpg",
+    "https://i.ibb.co.com/WNVSHCs7/library-7.jpg",
   ];
 
   const slide1Ref = useRef(null);
   const slide2Ref = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/books/latest")
-      .then((res) => res.json())
-      .then((data) => {
-        setLatestBooks(data);
+    axios
+      .get("http://localhost:3000/books/latest")
+      .then((response) => {
+        setLatestBooks(response.data);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching books:", error);
         toast.error("Failed to load books");
         setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/books/top-rated")
+      .then((response) => {
+        setTopRatedBooks(Array.isArray(response.data) ? response.data : []);
+        setLoadingTopRated(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching top rated books:", error);
+        setTopRatedBooks([]);
+        setLoadingTopRated(false);
       });
   }, []);
 
@@ -127,7 +145,7 @@ const Home = () => {
                         <p className="book-card-author">by {book.author}</p>
                         <div className="flex items-center justify-between mt-3">
                           <span className="book-card-genre">{book.genre}</span>
-                          <span className="text-[#C9A961] font-bold">
+                          <span className="text-[#C9A961] font-bold flex items-center gap-1">
                             <FaStar />
                             {book.rating}
                           </span>
@@ -148,11 +166,62 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="section bg-gradient-to-br from-[#3D3229] to-[#2C7873]">
+        <div className="container-custom">
+          <h2 className="section-title text-white">Top Rated Books</h2>
+
+          {loadingTopRated ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="skeleton h-96 rounded-xl"></div>
+              ))}
+            </div>
+          ) : topRatedBooks.length === 0 ? (
+            <p className="text-center text-white/80">No books rated yet</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {topRatedBooks &&
+                Array.isArray(topRatedBooks) &&
+                topRatedBooks.map((book, index) => (
+                  <Link to={`/book/${book._id}`} key={book._id}>
+                    <div className="relative bg-white/10 backdrop-blur-md rounded-xl overflow-hidden hover:bg-white/20 transition-all duration-300 hover:-translate-y-2 border border-white/20">
+                      <div className="absolute top-4 left-4 z-10 bg-[#C9A961] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold">
+                        #{index + 1}
+                      </div>
+
+                      <img
+                        src={book.coverImage}
+                        alt={book.title}
+                        className="w-full h-80 object-cover"
+                      />
+
+                      <div className="p-6 bg-gradient-to-t from-black/60 to-transparent absolute bottom-0 left-0 right-0">
+                        <h3 className="text-xl font-bold text-white mb-2 line-clamp-2">
+                          {book.title}
+                        </h3>
+                        <p className="text-white/80 text-sm mb-3">
+                          by {book.author}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="bg-white/20 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            {book.genre}
+                          </span>
+                          <span className="flex items-center gap-1 text-[#C9A961] font-bold text-lg">
+                            <FaStar /> {book.rating}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+            </div>
+          )}
+        </div>
+      </section>
+
       <section className="section bg-[#F5F0E8] py-12">
         <div className="container-custom">
-          <h2 className="section-title">
-            Explore by Genre
-          </h2>
+          <h2 className="section-title">Explore by Genre</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[

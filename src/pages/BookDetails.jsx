@@ -1,65 +1,61 @@
-import { useState, useEffect, useRef } from "react";
-import { Link, useParams, useNavigate } from "react-router";
-import toast from "react-hot-toast";
+import { useState, useEffect, useContext, useRef } from "react";
+import { useParams, useNavigate, Link } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 import useTitle from "../hooks/useTitle";
+import toast from "react-hot-toast";
 import { gsap } from "gsap";
-import { FaStar } from "react-icons/fa";
-import { FaBook } from "react-icons/fa";
-import { TiPencil } from "react-icons/ti";
-import { FaUser } from "react-icons/fa";
-import { FaBookOpen } from "react-icons/fa";
+import { FaStar, FaArrowLeft, FaUser, FaCalendar } from "react-icons/fa";
 import SkeletonLoader from "../components/shared/SkeletonLoader";
-import { IoArrowBack } from "react-icons/io5";
+import CommentSection from "../components/CommentSection";
+import axios from "axios";
 
 const BookDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const cardRef = useRef(null);
+  const headerRef = useRef(null);
   const imageRef = useRef(null);
   const infoRef = useRef(null);
 
-  useTitle(book ? book.title : "Book Details");
+  useTitle(book?.title || "Book Details");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/books/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Book not found");
-        return res.json();
-      })
-      .then((data) => {
-        setBook(data);
+    axios
+      .get(`http://localhost:3000/books/${id}`)
+      .then((response) => {
+        setBook(response.data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching book:", error);
+        console.error("Error:", error);
         toast.error("Failed to load book details");
-        setLoading(false);
+        navigate("/all-books");
       });
-  }, [id]);
+  }, [id, navigate]);
 
   useEffect(() => {
     if (!loading && book) {
       const ctx = gsap.context(() => {
-        gsap.from(cardRef.current, {
-          y: 30,
+        gsap.from(headerRef.current, {
+          y: -50,
           opacity: 0,
           duration: 0.8,
           ease: "power3.out",
         });
 
         gsap.from(imageRef.current, {
-          scale: 0.9,
+          scale: 0.8,
           opacity: 0,
           duration: 0.8,
-          ease: "power3.out",
+          ease: "back.out(1.7)",
           delay: 0.3,
         });
 
         gsap.from(infoRef.current.children, {
-          x: 30,
+          x: 50,
           opacity: 0,
           duration: 0.6,
           stagger: 0.1,
@@ -75,7 +71,7 @@ const BookDetails = () => {
   if (loading) {
     return (
       <div className="details-page">
-        <div className="details-container">
+        <div className="container-custom">
           <div className="details-card">
             <SkeletonLoader type="details" />
           </div>
@@ -85,38 +81,24 @@ const BookDetails = () => {
   }
 
   if (!book) {
-    return (
-      <div className="details-page">
-        <div className="container-custom">
-          <div className="empty-state">
-            <div className="empty-state-icon"></div>
-            <h2 className="empty-state-text">Book Not Found</h2>
-            <p className="text-[#6B6B6B] mb-8">
-              The book you're looking for doesn't exist.
-            </p>
-            <Link to="/all-books">
-              <button className="btn-primary">Back to All Books</button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
+    return null;
   }
+
+  const isOwner = user?.email === book.userEmail;
 
   return (
     <div className="details-page">
-      <div className="details-container">
-        <div ref={cardRef} className="details-card">
-          <div className="details-header">
+      <div className="container-custom">
+        <div className="details-card">
+          <div ref={headerRef} className="details-header">
             <button onClick={() => navigate(-1)} className="details-back-btn">
-              <IoArrowBack className="text-xl" />
-              Back
+              <FaArrowLeft /> Back
             </button>
-            <h1 className="text-4xl font-bold">Book Details</h1>
+            <h1 className="text-3xl md:text-4xl font-bold">Book Details</h1>
           </div>
 
           <div className="details-content">
-            <div ref={imageRef} className="details-image-section">
+            <div className="details-image-section" ref={imageRef}>
               <img
                 src={book.coverImage}
                 alt={book.title}
@@ -124,11 +106,9 @@ const BookDetails = () => {
               />
             </div>
 
-            <div ref={infoRef} className="details-info-section">
-              <div>
-                <h2 className="details-title">{book.title}</h2>
-                <p className="details-author">by {book.author}</p>
-              </div>
+            <div className="details-info-section" ref={infoRef}>
+              <h2 className="details-title">{book.title}</h2>
+              <p className="details-author">by {book.author}</p>
 
               <div className="details-meta">
                 <span className="details-genre-badge">{book.genre}</span>
@@ -138,47 +118,44 @@ const BookDetails = () => {
               </div>
 
               <div className="details-section">
-                <h3 className="details-section-title">
-                  <FaBookOpen /> Summary
-                </h3>
+                <h3 className="details-section-title">Summary</h3>
                 <p className="details-summary">{book.summary}</p>
               </div>
 
-              <div className="details-section">
-                <h3 className="details-section-title">
-                  <FaUser /> Added By
-                </h3>
-                <div className="details-added-by">
+              <div className="details-added-by">
+                <p className="details-user-info">
+                  <FaUser className="inline mr-2" />
+                  Added by:{" "}
+                  <span className="details-user-name">{book.userName}</span>
+                </p>
+                {book.addedAt && (
                   <p className="details-user-info">
-                    <span className="details-user-name">{book.userName}</span>
-                  </p>
-                  <p className="details-user-info">{book.userEmail}</p>
-                  <p className="details-user-info text-xs mt-2">
-                    Added on{" "}
+                    <FaCalendar className="inline mr-2" />
+                    Added on:{" "}
                     {new Date(book.addedAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
                     })}
                   </p>
-                </div>
+                )}
               </div>
 
-              <div className="details-actions">
-                <Link
-                  to={`/update-book/${book._id}`}
-                  className="btn-details-action flex items-center"
-                >
-                  <TiPencil className="mr-0.5" /> Update Book
-                </Link>
-                <Link
-                  to="/all-books"
-                  className="btn-details-secondary flex items-center"
-                >
-                  <FaBook className="mr-1" /> All Books
-                </Link>
-              </div>
+              {isOwner && (
+                <div className="details-actions">
+                  <Link to={`/update-book/${book._id}`}>
+                    <button className="btn-details-action">Update Book</button>
+                  </Link>
+                  <Link to="/all-books">
+                    <button className="btn-details-secondary">All Books</button>
+                  </Link>
+                </div>
+              )}
             </div>
+          </div>
+
+          <div className="p-8 border-t border-[#6B5D52]/20">
+            <CommentSection bookId={book._id} />
           </div>
         </div>
       </div>

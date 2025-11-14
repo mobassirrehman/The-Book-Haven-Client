@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { LuLink } from "react-icons/lu";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { IoIosCloudDone } from "react-icons/io";
+import axios from "axios";
 
 const AddBook = () => {
   useTitle("Add Book");
@@ -80,20 +81,15 @@ const AddBook = () => {
     formData.append("image", file);
 
     try {
-      const response = await fetch(
+      const response = await axios.post(
         `https://api.imgbb.com/1/upload?key=${
           import.meta.env.VITE_IMGBB_API_KEY
         }`,
-        {
-          method: "POST",
-          body: formData,
-        }
+        formData
       );
 
-      const data = await response.json();
-
-      if (data.success) {
-        setImageUrl(data.data.url);
+      if (response.data.success) {
+        setImageUrl(response.data.data.url);
         setUploading(false);
         toast.success("Image uploaded!");
       } else {
@@ -128,7 +124,7 @@ const AddBook = () => {
     }
   };
 
-  const handleAddBook = (e) => {
+  const handleAddBook = async (e) => {
     e.preventDefault();
 
     const title = e.target.title.value.trim();
@@ -159,31 +155,20 @@ const AddBook = () => {
       addedAt: new Date().toISOString(),
     };
 
-    fetch("http://localhost:3000/books", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newBook),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (data.insertedId) {
-          toast.success("Book added successfully!");
-          navigate("/all-books");
-        } else {
-          throw new Error("No insertedId received");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        toast.error("Failed to add book. Please try again.");
-      });
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/books",
+        newBook
+      );
+
+      if (response.data.insertedId) {
+        toast.success("Book added successfully!");
+        navigate("/all-books");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to add book. Please try again.");
+    }
   };
 
   return (

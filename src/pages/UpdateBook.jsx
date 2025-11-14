@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import useTitle from "../hooks/useTitle";
 import toast from "react-hot-toast";
 import gsap from "gsap";
+import axios from "axios";
 import SkeletonLoader from "../components/shared/SkeletonLoader";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { LuLink } from "react-icons/lu";
@@ -25,15 +26,12 @@ const UpdateBook = () => {
   useTitle("Update Book");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/books/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Book not found");
-        return res.json();
-      })
-      .then((data) => {
-        setBook(data);
-        setImageUrl(data.coverImage);
-        setImagePreview(data.coverImage);
+    axios
+      .get(`http://localhost:3000/books/${id}`)
+      .then((response) => {
+        setBook(response.data);
+        setImageUrl(response.data.coverImage);
+        setImagePreview(response.data.coverImage);
         setLoading(false);
       })
       .catch((error) => {
@@ -104,20 +102,15 @@ const UpdateBook = () => {
     formData.append("image", file);
 
     try {
-      const response = await fetch(
+      const response = await axios.post(
         `https://api.imgbb.com/1/upload?key=${
           import.meta.env.VITE_IMGBB_API_KEY
         }`,
-        {
-          method: "POST",
-          body: formData,
-        }
+        formData
       );
 
-      const data = await response.json();
-
-      if (data.success) {
-        setImageUrl(data.data.url);
+      if (response.data.success) {
+        setImageUrl(response.data.data.url);
         setUploading(false);
         toast.success("Image uploaded!");
       } else {
@@ -152,7 +145,7 @@ const UpdateBook = () => {
     }
   };
 
-  const handleUpdateBook = (e) => {
+  const handleUpdateBook = async (e) => {
     e.preventDefault();
 
     const title = e.target.title.value.trim();
@@ -180,31 +173,22 @@ const UpdateBook = () => {
       coverImage: imageUrl,
     };
 
-    fetch(`http://localhost:3000/books/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedBook),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("Book updated successfully!");
-          navigate(`/book/${id}`);
-        } else {
-          toast.info("No changes were made");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        toast.error("Failed to update book. Please try again.");
-      });
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/books/${id}`,
+        updatedBook
+      );
+
+      if (response.data.modifiedCount > 0) {
+        toast.success("Book updated successfully!");
+        navigate(`/book/${id}`);
+      } else {
+        toast.info("No changes were made");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to update book. Please try again.");
+    }
   };
 
   if (loading) {
