@@ -26,12 +26,12 @@ const NotFound = () => {
 
         <div className="flex flex-wrap gap-4 justify-center">
           <Link to="/">
-            <button className="flex items-center bg-[#2C7873] hover:bg-[#1F5B57] text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg">
+            <button className="flex items-center bg-gradient-to-br from-[#3D3229] to-[#2C7873] cursor-pointer text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg">
               <IoHome className="mr-2" /> Back to Home
             </button>
           </Link>
           <Link to="/all-books">
-            <button className="bg-[#6B5D52] hover:bg-[#3D3229] text-white flex items-center px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg">
+            <button className="bg-gradient-to-r from-[#351e03d2] to-[#5c260dca] hover:bg-[#3D3229] cursor-pointer text-white flex items-center px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg">
               <FaBook className="mr-2" /> Browse All Books
             </button>
           </Link>

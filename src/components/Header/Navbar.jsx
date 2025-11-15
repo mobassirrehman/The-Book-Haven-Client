@@ -176,7 +176,7 @@ const Navbar = () => {
 
                       <button
                         onClick={handleSignOut}
-                        className="navbar-dropdown-item-glass cursor-pointer flex items-center w-full text-left hover:text-red-800"
+                        className="navbar-dropdown-item-glass logout cursor-pointer w-full text-left"
                       >
                         <IoMdLogOut className="text-lg mr-1" />
                         Logout

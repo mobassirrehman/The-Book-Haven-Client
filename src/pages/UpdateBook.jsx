@@ -291,7 +291,7 @@ const UpdateBook = () => {
                   onClick={() => setUploadMethod("file")}
                   className={`flex-1 py-2 px-4 items-center justify-center flex rounded-lg font-semibold transition-all ${
                     uploadMethod === "file"
-                      ? "bg-[#2C7873] text-white"
+                      ? "bg-gradient-to-br from-[#3D3229] to-[#2C7873] text-white"
                       : "bg-[#F5F0E8] text-[#6B6B6B]"
                   }`}
                 >
@@ -302,7 +302,7 @@ const UpdateBook = () => {
                   onClick={() => setUploadMethod("url")}
                   className={`flex-1 py-2 px-4 items-center flex justify-center rounded-lg font-semibold transition-all ${
                     uploadMethod === "url"
-                      ? "bg-[#2C7873] text-white"
+                      ? "bg-gradient-to-br from-[#3D3229] to-[#2C7873] text-white"
                       : "bg-[#F5F0E8] text-[#6B6B6B]"
                   }`}
                 >

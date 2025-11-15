@@ -19,6 +19,10 @@ import axios from "axios";
 const Home = () => {
   useTitle("Home");
 
+  // useEffect(() => {
+  //   throw new Error("Test error page!");
+  // }, []);
+
   const [latestBooks, setLatestBooks] = useState([]);
   const [topRatedBooks, setTopRatedBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -248,10 +252,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="section bg-[#3D3229] text-white">
+      <section className="section bg-[#342213] text-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="text-8xl text-[#c18c5d] items-center flex justify-center mb-6">
+            <div className="text-8xl text-[#a85e1d] items-center flex justify-center mb-6">
               <IoBookSharp />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
