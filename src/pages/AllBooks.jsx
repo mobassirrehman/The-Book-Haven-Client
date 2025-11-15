@@ -20,7 +20,7 @@ const AllBooks = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/books")
+      .get("https://book-haven-server-neon.vercel.app/books")
       .then((response) => {
         setBooks(response.data);
         setLoading(false);

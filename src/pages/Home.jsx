@@ -38,7 +38,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/books/latest")
+      .get("https://book-haven-server-neon.vercel.app/books/latest")
       .then((response) => {
         setLatestBooks(response.data);
         setLoading(false);
@@ -52,7 +52,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/books/top-rated")
+      .get("https://book-haven-server-neon.vercel.app/books/top-rated")
       .then((response) => {
         setTopRatedBooks(Array.isArray(response.data) ? response.data : []);
         setLoadingTopRated(false);

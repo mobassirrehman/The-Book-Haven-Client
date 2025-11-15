@@ -24,7 +24,7 @@ const BookDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/books/${id}`)
+      .get(`https://book-haven-server-neon.vercel.app/books/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);

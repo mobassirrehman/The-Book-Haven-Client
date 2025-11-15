@@ -16,11 +16,11 @@ const CommentSection = ({ bookId }) => {
     const fetchComments = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/comments/${bookId}`
+          `https://book-haven-server-neon.vercel.app/comments/${bookId}`
         );
         setComments(data);
       } catch {
-          console.error("Error fetching comments");
+        console.error("Error fetching comments");
       }
     };
 
@@ -45,7 +45,7 @@ const CommentSection = ({ bookId }) => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:3000/comments",
+        "https://book-haven-server-neon.vercel.app/comments",
         commentData
       );
       setComments([data, ...comments]);
@@ -72,7 +72,9 @@ const CommentSection = ({ bookId }) => {
     }
 
     try {
-      await axios.delete(`http://localhost:3000/comments/${commentId}`);
+      await axios.delete(
+        `https://book-haven-server-neon.vercel.app/comments/${commentId}`
+      );
       setComments(comments.filter((c) => c._id !== commentId));
       toast.success("Comment deleted!");
     } catch {

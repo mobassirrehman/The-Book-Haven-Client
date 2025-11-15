@@ -23,7 +23,9 @@ const MyBooks = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:3000/books/user/${user.email}`)
+        .get(
+          `https://book-haven-server-neon.vercel.app/books/user/${user.email}`
+        )
         .then((response) => {
           setBooks(response.data);
           setLoading(false);
@@ -91,7 +93,9 @@ const MyBooks = () => {
     }
 
     try {
-      const response = await axios.delete(`http://localhost:3000/books/${id}`);
+      const response = await axios.delete(
+        `https://book-haven-server-neon.vercel.app/books/${id}`
+      );
 
       if (response.data.deletedCount > 0) {
         setBooks(books.filter((book) => book._id !== id));

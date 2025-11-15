@@ -27,7 +27,7 @@ const UpdateBook = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/books/${id}`)
+      .get(`https://book-haven-server-neon.vercel.app/books/${id}`)
       .then((response) => {
         setBook(response.data);
         setImageUrl(response.data.coverImage);
@@ -175,7 +175,7 @@ const UpdateBook = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/books/${id}`,
+        `https://book-haven-server-neon.vercel.app/books/${id}`,
         updatedBook
       );
 
