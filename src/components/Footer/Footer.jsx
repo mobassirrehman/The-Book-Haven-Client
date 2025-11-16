@@ -121,12 +121,12 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-[#EAE3D8]/20 pt-6 text-center">
-          <p className="flex items-center justify-center gap-2 text-sm text-[#EAE3D8]/80 mt-6">
+          <p className="flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm text-[#EAE3D8]/80 mt-6 flex-wrap">
             © {new Date().getFullYear()} The Book Haven. All rights reserved.
             Made by TheGrim with
-            <IoBookSharp className="text-[#EAE3D8] text-base" />
+            <IoBookSharp className="text-[#EAE3D8] text-sm sm:text-base" />
             and
-            <GiSelfLove className="text-[#EAE3D8] text-base" />.
+            <GiSelfLove className="text-[#EAE3D8] text-sm sm:text-base" />.
           </p>
         </div>
       </div>
