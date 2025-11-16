@@ -123,7 +123,7 @@ const Home = () => {
             <SkeletonLoader type="cards" />
           ) : latestBooks.length === 0 ? (
             <div className="text-center py-12">
-              <div className="text-8xl text-yellow-400 items-center flex justify-center mb-6">
+              <div className="text-8xl text-[#a85e1d] items-center flex justify-center mb-6">
                 <IoBookSharp />
               </div>
               <p className="text-2xl text-[#6B6B6B] mb-6">
