@@ -2,8 +2,8 @@
 
 A full-stack web application for book lovers to explore, add, update, and manage their personal digital library with a beautiful vintage aesthetic.
 
-Live Site:  
-Server Vercel: https://vercel.com/mobassirrehmans-projects/book-haven-server-10/yG6vDqDLkkso7aHEUw5BzKKKDtsR
+Live Site: https://the-book-haven-001.netlify.app
+Server Vercel: https://book-haven-server-neon.vercel.app
 
 ---
 
