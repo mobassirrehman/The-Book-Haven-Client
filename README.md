@@ -4,7 +4,9 @@ A full-stack web application for book lovers to explore, add, update, and manage
 
 Live Site: https://the-book-haven-001.netlify.app
 Server Vercel: https://book-haven-server-neon.vercel.app
+## 📸 Screenshots
 
+![Book Haven Homepage](https://i.ibb.co.com/mP0rgJg/book-haven-home.png)
 ---
 
 ## ✨ Key Features
@@ -124,10 +126,6 @@ For the backend server, visit: [Book Haven Server Repository](https://github.com
 
 - GitHub: [@mobassirrehman](https://github.com/mobassirrehman)
 - Email: mobassir.rehman@icloud.com
-- 
-## 📸 Screenshots
-
-![Book Haven Homepage](https://i.ibb.co.com/mP0rgJg/book-haven-home.png)
 ---
 
 ## 🙏 Acknowledgments
