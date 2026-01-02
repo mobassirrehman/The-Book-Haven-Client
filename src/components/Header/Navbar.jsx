@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
-import { IoMdLogOut } from "react-icons/io";
 import { useTheme } from "../../context/ThemeContext";
+import { IoMdLogOut } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { IoBookSharp, IoMenu, IoClose } from "react-icons/io5";
+import { FiUser, FiBook, FiSettings } from "react-icons/fi";
 import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
@@ -25,99 +26,81 @@ const Navbar = () => {
       });
   };
 
-  const navLinks = (
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const publicLinks = [
+    { name: "Home", path: "/" },
+    { name: "All Books", path: "/all-books" },
+  ];
+
+  const privateLinks = [
+    { name: "Add Book", path: "/add-book" },
+    { name: "My Books", path: "/my-books" },
+  ];
+
+  const NavLinks = () => (
     <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? "navbar-link navbar-link-active" : "navbar-link"
-          }
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/all-books"
-          className={({ isActive }) =>
-            isActive ? "navbar-link navbar-link-active" : "navbar-link"
-          }
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          All Books
-        </NavLink>
-      </li>
-      {user && (
-        <>
-          <li>
+      {publicLinks.map((link) => (
+        <li key={link.path}>
+          <NavLink
+            to={link.path}
+            className={({ isActive }) =>
+              isActive ? "navbar-link navbar-link-active" : "navbar-link"
+            }
+            onClick={closeMobileMenu}
+          >
+            {link.name}
+          </NavLink>
+        </li>
+      ))}
+      {user &&
+        privateLinks.map((link) => (
+          <li key={link.path}>
             <NavLink
-              to="/add-book"
+              to={link.path}
               className={({ isActive }) =>
                 isActive ? "navbar-link navbar-link-active" : "navbar-link"
               }
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >
-              Add Book
+              {link.name}
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/my-books"
-              className={({ isActive }) =>
-                isActive ? "navbar-link navbar-link-active" : "navbar-link"
-              }
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              My Books
-            </NavLink>
-          </li>
-        </>
-      )}
+        ))}
     </>
   );
 
   return (
     <nav className="navbar">
       <div className="container-custom">
-        <div className="flex items-center justify-between py-4">
-          <Link to="/" className="navbar-brand">
-            The Book Haven
+        <div className="flex items-center justify-between py-3">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-dark)] flex items-center justify-center">
+              <IoBookSharp className="text-xl text-white" />
+            </div>
+            <span className="navbar-brand hidden sm:block">The Book Haven</span>
           </Link>
 
-          <ul className="hidden lg:flex items-center gap-2">{navLinks}</ul>
+          <ul className="hidden lg:flex items-center gap-1">
+            <NavLinks />
+          </ul>
 
-          <div className="flex items-center gap-3 md:gap-6">
-            <label className="btn btn-ghost hover:bg-transparent swap swap-rotate lg:hidden">
-              <input
-                type="checkbox"
-                checked={isMobileMenuOpen}
-                onChange={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              />
-              <svg
-                className="swap-off fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 512 512"
-              >
-                <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
-              </svg>
-              <svg
-                className="swap-on fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 512 512"
-              >
-                <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
-              </svg>
-            </label>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <IoClose className="text-2xl text-[var(--color-text-primary)]" />
+              ) : (
+                <IoMenu className="text-2xl text-[var(--color-text-primary)]" />
+              )}
+            </button>
 
             <button
               onClick={toggleTheme}
-              className="btn btn-ghost btn-circle hover:bg-transparent"
+              className="p-2 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors"
               aria-label="Toggle theme"
               data-tooltip-id="theme-tooltip"
               data-tooltip-content={
@@ -127,15 +110,15 @@ const Navbar = () => {
               }
             >
               {theme === "light" ? (
-                <MdDarkMode className="text-2xl text-[#3D3229]" />
+                <MdDarkMode className="text-2xl text-[var(--color-text-secondary)]" />
               ) : (
-                <MdLightMode className="text-2xl text-[#F5F0E8]" />
+                <MdLightMode className="text-2xl text-[var(--color-accent)]" />
               )}
             </button>
             <Tooltip id="theme-tooltip" place="bottom" />
 
             {loading ? (
-              <div className="w-8 h-8 border-4 border-white border-t-[#2C7873] rounded-full animate-spin"></div>
+              <div className="w-10 h-10 rounded-full border-2 border-[var(--color-border)] border-t-[var(--color-primary)] animate-spin"></div>
             ) : user ? (
               <div className="relative">
                 <button
@@ -145,9 +128,9 @@ const Navbar = () => {
                   data-tooltip-content={user?.displayName || "User"}
                 >
                   <img
-                    src={user?.photoURL || ""}
+                    src={user?.photoURL || "https://via.placeholder.com/40"}
                     alt={user?.displayName}
-                    className="w-10 h-10 rounded-full cursor-pointer border-2 border-[#2C7873] object-cover hover:border-[#EAE3D8] transition-all"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-[var(--color-primary)] hover:border-[var(--color-primary-light)] transition-all"
                   />
                 </button>
                 <Tooltip id="user-tooltip" place="bottom" />
@@ -158,40 +141,70 @@ const Navbar = () => {
                       className="fixed inset-0 z-40"
                       onClick={() => setIsDropdownOpen(false)}
                     ></div>
+
                     <div className="navbar-dropdown-glass z-50">
-                      <div className="px-4 py-3 border-b border-[#EAE3D8]">
-                        <p className="font-bold text-[#565350]">
-                          {user?.displayName || "User"}
-                        </p>
-                        <p className="text-sm text-[#393937]">{user?.email}</p>
+                      {/* User Info */}
+                      <div className="px-4 py-4 border-b border-[var(--color-border)]">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={
+                              user?.photoURL || "https://via.placeholder.com/40"
+                            }
+                            alt={user?.displayName}
+                            className="w-12 h-12 rounded-full object-cover"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="font-bold text-[var(--color-text-primary)] truncate">
+                              {user?.displayName || "User"}
+                            </p>
+                            <p className="text-sm text-[var(--color-text-muted)] truncate">
+                              {user?.email}
+                            </p>
+                          </div>
+                        </div>
                       </div>
 
-                      <Link
-                        to="/my-books"
-                        className="navbar-dropdown-item-glass text-[#0c0c0c]"
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        My Books
-                      </Link>
+                      <div className="py-2">
+                        <Link
+                          to="/my-books"
+                          className="navbar-dropdown-item-glass"
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          <FiBook className="text-lg mr-3" />
+                          My Books
+                        </Link>
+                        <Link
+                          to="/add-book"
+                          className="navbar-dropdown-item-glass"
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          <FiUser className="text-lg mr-3" />
+                          Add New Book
+                        </Link>
+                      </div>
 
-                      <button
-                        onClick={handleSignOut}
-                        className="navbar-dropdown-item-glass logout cursor-pointer w-full text-left"
-                      >
-                        <IoMdLogOut className="text-lg mr-1" />
-                        Logout
-                      </button>
+                      <div className="border-t border-[var(--color-border)] py-2">
+                        <button
+                          onClick={handleSignOut}
+                          className="navbar-dropdown-item-glass logout w-full"
+                        >
+                          <IoMdLogOut className="text-lg mr-3" />
+                          Sign Out
+                        </button>
+                      </div>
                     </div>
                   </>
                 )}
               </div>
             ) : (
-              <div className="hidden lg:flex gap-3">
+              <div className="hidden lg:flex items-center gap-2">
                 <Link to="/login">
-                  <button className="btn-primary">Login</button>
+                  <button className="btn-ghost">Sign In</button>
                 </Link>
                 <Link to="/register">
-                  <button className="btn-primary">Register</button>
+                  <button className="btn-primary text-sm px-4 py-2">
+                    Get Started
+                  </button>
                 </Link>
               </div>
             )}
@@ -199,16 +212,20 @@ const Navbar = () => {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="lg:hidden pb-4">
-            <ul className="flex flex-col gap-2">{navLinks}</ul>
+          <div className="lg:hidden border-t border-[var(--color-border)] py-4">
+            <ul className="flex flex-col gap-1">
+              <NavLinks />
+            </ul>
 
             {!user && (
-              <div className="flex flex-col gap-2 mt-4">
-                <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                  <button className="btn-primary w-full">Login</button>
+              <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-[var(--color-border)]">
+                <Link to="/login" onClick={closeMobileMenu}>
+                  <button className="w-full py-3 rounded-lg border-2 border-[var(--color-border)] font-semibold text-[var(--color-text-primary)] hover:border-[var(--color-primary)] transition-colors">
+                    Sign In
+                  </button>
                 </Link>
-                <Link to="/register" onClick={() => setIsMobileMenuOpen(false)}>
-                  <button className="btn-primary w-full">Register</button>
+                <Link to="/register" onClick={closeMobileMenu}>
+                  <button className="btn-primary w-full">Get Started</button>
                 </Link>
               </div>
             )}
