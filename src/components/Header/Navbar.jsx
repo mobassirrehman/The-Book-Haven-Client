@@ -6,7 +6,7 @@ import { useTheme } from "../../context/ThemeContext";
 import { IoMdLogOut } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { IoBookSharp, IoMenu, IoClose } from "react-icons/io5";
-import { FiUser, FiBook, FiSettings } from "react-icons/fi";
+import { FiUser, FiBook, FiSettings, FiGrid } from "react-icons/fi";
 import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
@@ -33,10 +33,7 @@ const Navbar = () => {
     { name: "All Books", path: "/all-books" },
   ];
 
-  const privateLinks = [
-    { name: "Add Book", path: "/add-book" },
-    { name: "My Books", path: "/my-books" },
-  ];
+  const privateLinks = [{ name: "Dashboard", path: "/dashboard" }];
 
   const NavLinks = () => (
     <>
@@ -166,20 +163,20 @@ const Navbar = () => {
 
                       <div className="py-2">
                         <Link
-                          to="/my-books"
+                          to="/dashboard"
                           className="navbar-dropdown-item-glass"
                           onClick={() => setIsDropdownOpen(false)}
                         >
-                          <FiBook className="text-lg mr-3" />
-                          My Books
+                          <FiGrid className="text-lg mr-3" />
+                          Dashboard
                         </Link>
                         <Link
-                          to="/add-book"
+                          to="/dashboard/profile"
                           className="navbar-dropdown-item-glass"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           <FiUser className="text-lg mr-3" />
-                          Add New Book
+                          Profile
                         </Link>
                       </div>
 

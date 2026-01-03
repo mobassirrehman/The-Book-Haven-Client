@@ -252,8 +252,8 @@ const Home = () => {
 
         <div className="banner-overlay"></div>
 
-        <div className="container-custom">
-          <div className="banner-content">
+        <div className="banner-content">
+          <div className="container-custom">
             <h1 className="banner-title">Welcome to The Book Haven</h1>
             <p className="banner-subtitle">
               Your personal digital library where book lovers come together to

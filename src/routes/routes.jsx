@@ -11,6 +11,11 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import PrivateRoute from "../privateRoute/PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Dashboard from "../pages/dashboard/Dashboard";
+import DashboardMyBooks from "../pages/dashboard/DashboardMyBooks";
+import DashboardUpdateBook from "../pages/dashboard/DashboardUpdateBook";
+import Profile from "../pages/dashboard/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -66,10 +71,41 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+    children: [
       {
-        path: "*",
-        element: <NotFound></NotFound>,
+        index: true,
+        element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "my-books",
+        element: <DashboardMyBooks></DashboardMyBooks>,
+      },
+      {
+        path: "add-book",
+        element: <AddBook></AddBook>,
+      },
+      {
+        path: "update-book/:id",
+        element: <DashboardUpdateBook></DashboardUpdateBook>,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
 ]);

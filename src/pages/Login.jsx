@@ -25,8 +25,8 @@ const Login = () => {
 
   const from = location.state || "/";
 
-  const DEMO_EMAIL = "demo@bookhaven.com";
-  const DEMO_PASSWORD = "Demo@123";
+  const DEMO_EMAIL = "thebook@haven.com";
+  const DEMO_PASSWORD = "Book@123";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
