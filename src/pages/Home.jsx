@@ -17,12 +17,7 @@ import {
   IoTrendingUp,
 } from "react-icons/io5";
 import { GiBookshelf, GiSpellBook, GiLovers } from "react-icons/gi";
-import {
-  MdMenuBook,
-  MdAutoStories,
-  MdRateReview,
-  MdEmail,
-} from "react-icons/md";
+import { MdMenuBook, MdAutoStories, MdRateReview } from "react-icons/md";
 import {
   FaUserSecret,
   FaMagic,
@@ -47,7 +42,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [loadingTopRated, setLoadingTopRated] = useState(true);
   const [openFaq, setOpenFaq] = useState(null);
-  const [email, setEmail] = useState("");
 
   const bannerImages = [
     "https://i.ibb.co.com/PkLY22P/library-9.jpg",
@@ -128,14 +122,6 @@ const Home = () => {
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
-  };
-
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    if (email) {
-      toast.success("Thanks for subscribing!");
-      setEmail("");
-    }
   };
 
   const genres = [
@@ -311,7 +297,7 @@ const Home = () => {
               <p className="text-xl text-[var(--color-text-secondary)] mb-6">
                 No books in the library yet.
               </p>
-              <Link to="/add-book">
+              <Link to="/dashboard/add-book">
                 <button className="btn-primary">Add the First Book</button>
               </Link>
             </div>
@@ -445,7 +431,9 @@ const Home = () => {
             {genres.map((genre) => (
               <Link to={`/all-books?genre=${genre.name}`} key={genre.name}>
                 <div className="genre-card">
-                  <div className="genre-icon flex justify-center">{genre.icon}</div>
+                  <div className="genre-icon flex justify-center">
+                    {genre.icon}
+                  </div>
                   <h3 className="genre-name">{genre.name}</h3>
                   <p className="text-xs text-[var(--color-text-muted)] mt-1">
                     {genre.count} books
@@ -517,35 +505,6 @@ const Home = () => {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section section-dark">
-        <div className="container-custom text-center">
-          <MdEmail className="text-6xl text-[var(--color-accent-light)] mx-auto mb-6" />
-          <h2 className="section-title section-title-light">Stay Updated</h2>
-          <p className="section-subtitle section-subtitle-light">
-            Subscribe to our newsletter for book recommendations, new features,
-            and reading tips
-          </p>
-
-          <form onSubmit={handleNewsletterSubmit} className="newsletter-form">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              className="newsletter-input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit" className="newsletter-btn">
-              Subscribe
-            </button>
-          </form>
-
-          <p className="text-white/50 text-sm mt-4">
-            No spam, unsubscribe anytime
-          </p>
         </div>
       </section>
 

@@ -31,6 +31,8 @@ const Navbar = () => {
   const publicLinks = [
     { name: "Home", path: "/" },
     { name: "All Books", path: "/all-books" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const privateLinks = [{ name: "Dashboard", path: "/dashboard" }];

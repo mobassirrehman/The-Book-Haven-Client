@@ -13,8 +13,8 @@ const Footer = () => {
   const quickLinks = [
     { name: "Home", path: "/" },
     { name: "All Books", path: "/all-books" },
-    { name: "Add Book", path: "/add-book" },
-    { name: "My Books", path: "/my-books" },
+    { name: "Add Book", path: "/dashboard/add-book" },
+    { name: "My Books", path: "/dashboard/my-books" },
   ];
 
   const categories = [
@@ -27,10 +27,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: <FaXTwitter />, label: "Twitter", href: "#" },
-    { icon: <SiQuora />, label: "Quora", href: "#" },
-    { icon: <BsThreads />, label: "Threads", href: "#" },
-    { icon: <FaReddit />, label: "Reddit", href: "#" },
+    { icon: <FaXTwitter />, label: "Twitter", href: "https://x.com" },
+    { icon: <SiQuora />, label: "Quora", href: "https://quora.com" },
+    { icon: <BsThreads />, label: "Threads", href: "https://threads.com" },
+    { icon: <FaReddit />, label: "Reddit", href: "https://reddit.com" },
   ];
 
   return (

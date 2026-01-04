@@ -1,15 +1,15 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
-import useTitle from "../hooks/useTitle";
+import useTitle from "../../hooks/useTitle";
 import { gsap } from "gsap";
 import { LuLink } from "react-icons/lu";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { IoIosCloudDone } from "react-icons/io";
 import axios from "axios";
 
-const AddBook = () => {
+const DashboardAddBook = () => {
   useTitle("Add Book");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -354,4 +354,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
+export default DashboardAddBook;

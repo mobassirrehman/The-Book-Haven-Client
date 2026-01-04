@@ -3,8 +3,6 @@ import Root from "../layouts/Root";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import AllBooks from "../pages/AllBooks";
-import AddBook from "../pages/AddBook";
-import MyBooks from "../pages/MyBooks";
 import BookDetails from "../pages/BookDetails";
 import UpdateBook from "../pages/UpdateBook";
 import Login from "../pages/Login";
@@ -15,7 +13,10 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardMyBooks from "../pages/dashboard/DashboardMyBooks";
 import DashboardUpdateBook from "../pages/dashboard/DashboardUpdateBook";
+import DashboardAddBook from "../pages/dashboard/DashboardAddBook";
 import Profile from "../pages/dashboard/Profile";
+import Contact from "../pages/Contact";
+import About from "../pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -32,28 +33,8 @@ export const router = createBrowserRouter([
         element: <AllBooks></AllBooks>,
       },
       {
-        path: "/add-book",
-        element: (
-          <PrivateRoute>
-            <AddBook></AddBook>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-books",
-        element: (
-          <PrivateRoute>
-            <MyBooks></MyBooks>
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/book/:id",
-        element: (
-          <PrivateRoute>
-            <BookDetails></BookDetails>
-          </PrivateRoute>
-        ),
+        element: <BookDetails></BookDetails>,
       },
       {
         path: "/update-book/:id",
@@ -70,6 +51,14 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "about",
+        element: <About></About>,
+      },
+      {
+        path: "contact",
+        element: <Contact></Contact>,
       },
     ],
   },
@@ -92,7 +81,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "add-book",
-        element: <AddBook></AddBook>,
+        element: <DashboardAddBook></DashboardAddBook>,
       },
       {
         path: "update-book/:id",

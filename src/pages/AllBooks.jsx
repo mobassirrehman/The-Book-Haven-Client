@@ -287,7 +287,7 @@ const AllBooks = () => {
             <p className="text-[var(--color-text-secondary)] mb-8">
               Be the first to add a book to our collection!
             </p>
-            <Link to="/add-book">
+            <Link to="/dashboard/add-book">
               <button className="btn-primary">Add Your First Book</button>
             </Link>
           </div>

@@ -1,49 +1,133 @@
 import { Link } from "react-router";
 import useTitle from "../hooks/useTitle";
-import { IoHome } from "react-icons/io5";
-import { FaBook } from "react-icons/fa";
-import { SiBookstack } from "react-icons/si";
+import { IoHomeOutline, IoSearchOutline, IoBookOutline } from "react-icons/io5";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const NotFound = () => {
-  useTitle("404 - Not Found");
+  useTitle("Page Not Found");
+
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".error-code", {
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+      });
+
+      gsap.from(".error-text", {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        delay: 0.3,
+        stagger: 0.15,
+        ease: "power3.out",
+      });
+
+      gsap.from(".error-actions", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        delay: 0.7,
+        ease: "power3.out",
+      });
+
+      gsap.to(".floating-book", {
+        y: -15,
+        duration: 2,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        stagger: {
+          each: 0.3,
+          from: "random",
+        },
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#EAE3D8] via-[#F5F0E8] to-[#EAE3D8] flex items-center justify-center px-4">
-      <div className="text-center max-w-2xl">
-        <div className="text-9xl font-bold text-[#2C7873] mb-4">404</div>
+    <div
+      ref={containerRef}
+      className="min-h-screen flex items-center justify-center px-4 py-16"
+      style={{ background: "var(--color-bg-secondary)" }}
+    >
+      <div className="text-center max-w-2xl mx-auto">
+        <div className="relative mb-8">
+          <div className="flex justify-center items-end gap-2 mb-4">
+            <div className="floating-book w-8 h-12 rounded bg-[var(--color-primary)] opacity-60"></div>
+            <div className="floating-book w-10 h-16 rounded bg-[var(--color-accent)] opacity-70"></div>
+            <div className="floating-book w-8 h-14 rounded bg-[var(--color-secondary)] opacity-60"></div>
+          </div>
 
-        <h1
-          className="text-4xl md:text-5xl font-bold text-[#3D3229] mb-4"
-          style={{ fontFamily: "Marcellus, serif" }}
-        >
-          Lost in the Library?
-        </h1>
+          <h1 className="error-code text-[150px] md:text-[200px] font-bold leading-none text-transparent bg-clip-text bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-dark)]">
+            404
+          </h1>
+        </div>
 
-        <p className="text-lg text-[#6B6B6B] mb-8">
-          We couldn't find the page you're looking for. It might have been
-          removed, renamed, or never existed.
-        </p>
+        <div className="space-y-4 mb-10">
+          <h2 className="error-text text-2xl md:text-3xl font-bold text-[var(--color-text-primary)]">
+            Oops! Page Not Found
+          </h2>
+          <p className="error-text text-lg text-[var(--color-text-secondary)] max-w-md mx-auto">
+            The page you're looking for seems to have wandered off into another
+            chapter. Let's get you back on track.
+          </p>
+        </div>
 
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="error-actions flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link to="/">
-            <button className="flex items-center bg-gradient-to-br from-[#3D3229] to-[#2C7873] cursor-pointer text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg">
-              <IoHome className="mr-2" /> Back to Home
+            <button className="btn-primary flex items-center gap-2 min-w-[180px]">
+              <IoHomeOutline className="text-xl" />
+              Back to Home
             </button>
           </Link>
           <Link to="/all-books">
-            <button className="bg-gradient-to-r from-[#351e03d2] to-[#5c260dca] hover:bg-[#3D3229] cursor-pointer text-white flex items-center px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg">
-              <FaBook className="mr-2" /> Browse All Books
+            <button className="btn-outline flex items-center gap-2 min-w-[180px]">
+              <IoBookOutline className="text-xl" />
+              Browse Books
             </button>
           </Link>
         </div>
 
-        <div className="mt-12">
-          <div className="text-8xl mb-4 flex justify-center">
-            <SiBookstack className="text-[#6B5D52]" />
-          </div>
-          <p className="text-sm text-[#6B6B6B] italic">
-            "Not all those who wander are lost... but this page is."
+        <div className="mt-12 pt-8 border-t border-[var(--color-border)]">
+          <p className="text-sm text-[var(--color-text-muted)] mb-4">
+            Here are some helpful links:
           </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <Link
+              to="/"
+              className="text-[var(--color-primary)] hover:underline"
+            >
+              Home
+            </Link>
+            <span className="text-[var(--color-border)]">•</span>
+            <Link
+              to="/all-books"
+              className="text-[var(--color-primary)] hover:underline"
+            >
+              All Books
+            </Link>
+            <span className="text-[var(--color-border)]">•</span>
+            <Link
+              to="/about"
+              className="text-[var(--color-primary)] hover:underline"
+            >
+              About Us
+            </Link>
+            <span className="text-[var(--color-border)]">•</span>
+            <Link
+              to="/contact"
+              className="text-[var(--color-primary)] hover:underline"
+            >
+              Contact
+            </Link>
+          </div>
         </div>
       </div>
     </div>
